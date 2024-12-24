@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:15   # Use the desired PostgreSQL version
+    container_name: postgres-db
+    restart: always
+    ports:
+      - "5432:5432"       # Map PostgreSQL port to the host
+    environment:
+      POSTGRES_USER: postgres      # Replace with your desired username
+      POSTGRES_PASSWORD: Ahmed3344  # Replace with your desired password
+      POSTGRES_DB: Food        # Replace with your desired database name
+    volumes:
+      - /tmp/data:/var/lib/postgresql/data:Z # Persistent data storage
+  spring-boot-app:
+    build:
+      context: ./  # Path to the Spring Boot project directory containing the Containerfile
+      dockerfile: mavenfile
+    container_name: spring-boot-app
+    restart: always
+    ports:
+      - "8080:8080"       # Expose Spring Boot application on port 8080
+    depends_on:
+      - postgres           # Ensure PostgreSQL starts before Spring Boot app
+
