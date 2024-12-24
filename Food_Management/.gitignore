@@ -29,6 +29,7 @@ key
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+/food-ordering-frontend/build
+/food-ordering-frontend/node_modules
 ### VS Code ###
 .vscode/
